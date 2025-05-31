@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guru Mounika's Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <img src="MounikaChoppa.jpg" alt="Guru Mounika" />
+        <h1>Guru Mounika Choppa</h1>
+        <p>Computer Science Student</p>
+        <p class="contact">
+            <a href="mailto:gurumounika24@gmail.com">gurumounika24@gmail.com</a>
+            <a href="tel:+7989730881">7989730881</a>
+            <a href="https://github.com/GuruMounikaChoppa" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/guru-mounika-choppa-b8895128b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+    </header>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill-item">HTML</div>
+            <div class="skill-item">CSS</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">Java</div>
+            <div class="skill-item">C</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">DATASTRUCTURES AND ALGORITHMS</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <div class="projects-list">
+
+            <div class="project-card">
+                <h3>University Management System</h3>
+                <p>A Java Swing desktop application for managing university operations including student info, courses, and faculty. (Runs separately)</p>
+                <button disabled title="Java Swing App - Runs separately">Desktop App</button>
+            </div>
+
+            <div class="project-card">
+                <h3>To-Do List</h3>
+                <p>A simple, interactive to-do list web app to add, delete, and track your daily tasks.</p>
+                <button onclick="openProject('todo.html')">View Project</button>
+            </div>
+
+            <div class="project-card">
+                <h3>Calculator</h3>
+                <p>A clean and responsive web calculator that supports basic arithmetic operations.</p>
+                <button onclick="openProject('calculator.html')">View Project</button>
+            </div>
+
+            <div class="project-card">
+                <h3>Quiz Application</h3>
+                <p>A fun, simple quiz web app with multiple-choice questions and score tracking.</p>
+                <button onclick="openProject('quiz.html')">View Project</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Guru Mounika Choppa. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

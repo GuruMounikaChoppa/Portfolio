@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Quiz</title>
+    <style>
+        body {
+            background: #ede7f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+        }
+        
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 30px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            animation: fadeIn 0.8s ease forwards;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            margin: 0;
+            color: #673ab7;
+            text-align: center;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #311b92;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        button.option-btn {
+            background: #d1c4e9;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: left;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+            user-select: none;
+        }
+        
+        button.option-btn:hover {
+            background: #9575cd;
+            color: white;
+        }
+        
+        .score {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #512da8;
+            font-weight: 600;
+        }
+        
+        button.next-btn {
+            background: #673ab7;
+            border: none;
+            color: white;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+        
+        button.next-btn:hover {
+            background: #4527a0;
+        }
+        
+        @media (max-width: 480px) {
+            .quiz-container {
+                width: 95vw;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .question {
+                font-size: 1rem;
+            }
+            button.option-btn {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>Simple Quiz</h1>
+        <div id="question" class="question">Question text</div>
+        <div class="options" id="options"></div>
+        <div class="score" id="score"></div>
+        <button id="next-btn" class="next-btn" style="display:none;">Next</button>
+    </div>
+
+    <script>
+        const quizData = [{
+            question: "What does HTML stand for?",
+            options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Hyperlinking Text Marking Language"],
+            answer: 0,
+        }, {
+            question: "Which language is used for styling web pages?",
+            options: ["HTML", "JQuery", "CSS", "XML"],
+            answer: 2,
+        }, {
+            question: "Inside which HTML element do we put the JavaScript?",
+            options: ["<js>", "<script>", "<javascript>", "<code>"],
+            answer: 1,
+        }, {
+            question: "Which company developed JavaScript?",
+            options: ["Netscape", "Microsoft", "Sun Microsystems", "IBM"],
+            answer: 0,
+        }, {
+            question: "What does CSS stand for?",
+            options: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+            answer: 2,
+        }];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const scoreEl = document.getElementById('score');
+        const nextBtn = document.getElementById('next-btn');
+
+        function loadQuestion() {
+            nextBtn.style.display = 'none';
+            scoreEl.textContent = '';
+            const currentData = quizData[currentQuestionIndex];
+            questionEl.textContent = currentData.question;
+            optionsEl.innerHTML = '';
+            currentData.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = option;
+                btn.className = 'option-btn';
+                btn.addEventListener('click', () => selectOption(index));
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedIndex) {
+            const currentData = quizData[currentQuestionIndex];
+            const buttons = optionsEl.querySelectorAll('button');
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === currentData.answer) {
+                    btn.style.backgroundColor = '#4caf50'; // green for correct
+                    btn.style.color = 'white';
+                }
+                if (i === selectedIndex && selectedIndex !== currentData.answer) {
+                    btn.style.backgroundColor = '#f44336'; // red for wrong
+                    btn.style.color = 'white';
+                }
+            });
+
+            if (selectedIndex === currentData.answer) {
+                score++;
+            }
+
+            nextBtn.style.display = 'block';
+            scoreEl.textContent = `Score: ${score} / ${quizData.length}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                questionEl.textContent = 'Quiz Completed!';
+                optionsEl.innerHTML = '';
+                nextBtn.style.display = 'none';
+                scoreEl.textContent = `Final Score: ${score} / ${quizData.length}`;
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+
+</html>

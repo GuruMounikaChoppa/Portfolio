@@ -1,0 +1,213 @@
+ /* Reset & basics */
+ 
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+ 
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background: #f4f6f8;
+     color: #333;
+     line-height: 1.6;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 20px;
+ }
+ 
+ a {
+     color: #1976d2;
+     text-decoration: none;
+     transition: color 0.3s ease;
+ }
+ 
+ a:hover {
+     color: #0d47a1;
+ }
+ 
+ header {
+     text-align: center;
+     margin-bottom: 40px;
+     animation: fadeInDown 1s ease forwards;
+ }
+ 
+ @keyframes fadeInDown {
+     from {
+         opacity: 0;
+         transform: translateY(-20px);
+     }
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+ 
+ header img {
+     width: 220px;
+     height: 240px;
+     border-radius: 50%;
+     object-fit: cover;
+     border: 4px solid #1976d2;
+     margin-bottom: 15px;
+     box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+ }
+ 
+ header h1 {
+     font-size: 2.8rem;
+     color: #1976d2;
+     margin-bottom: 5px;
+ }
+ 
+ header p {
+     font-size: 1.1rem;
+     color: #555;
+     margin-bottom: 10px;
+ }
+ 
+ header .contact {
+     font-size: 1rem;
+     color: #444;
+ }
+ 
+ header .contact a {
+     margin-left: 10px;
+     font-weight: 600;
+ }
+ 
+ section {
+     background: white;
+     max-width: 900px;
+     width: 100%;
+     border-radius: 15px;
+     padding: 30px 40px;
+     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+     margin-bottom: 40px;
+     animation: fadeInUp 1s ease forwards;
+ }
+ 
+ @keyframes fadeInUp {
+     from {
+         opacity: 0;
+         transform: translateY(20px);
+     }
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+ 
+ section h2 {
+     margin-bottom: 20px;
+     color: #0d47a1;
+     border-bottom: 3px solid #1976d2;
+     display: inline-block;
+     padding-bottom: 6px;
+     font-weight: 700;
+     font-size: 1.9rem;
+ }
+ /* Skills */
+ 
+ .skills-list {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 15px;
+ }
+ 
+ .skill-item {
+     background: #e3f2fd;
+     color: #0d47a1;
+     padding: 10px 18px;
+     border-radius: 30px;
+     font-weight: 600;
+     box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+     font-size: 1rem;
+     user-select: none;
+     transition: background-color 0.3s ease, color 0.3s ease;
+     cursor: default;
+ }
+ 
+ .skill-item:hover {
+     background-color: #1976d2;
+     color: white;
+ }
+ /* Projects */
+ 
+ .projects-list {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 25px;
+     justify-content: center;
+ }
+ 
+ .project-card {
+     background: #fafafa;
+     border-radius: 15px;
+     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+     width: 260px;
+     padding: 20px 25px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     transition: box-shadow 0.3s ease;
+ }
+ 
+ .project-card:hover {
+     box-shadow: 0 8px 25px rgba(25, 118, 210, 0.3);
+ }
+ 
+ .project-card h3 {
+     color: #1976d2;
+     margin-bottom: 15px;
+     font-size: 1.4rem;
+ }
+ 
+ .project-card p {
+     flex-grow: 1;
+     font-size: 1rem;
+     color: #444;
+     margin-bottom: 20px;
+ }
+ 
+ .project-card button {
+     padding: 12px 18px;
+     border: none;
+     border-radius: 10px;
+     background-color: #1976d2;
+     color: white;
+     font-weight: 600;
+     font-size: 1rem;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+ 
+ .project-card button:hover:not(:disabled) {
+     background-color: #0d47a1;
+ }
+ 
+ .project-card button:disabled {
+     background-color: #ccc;
+     cursor: not-allowed;
+     color: #666;
+ }
+ /* Footer */
+ 
+ footer {
+     text-align: center;
+     font-size: 0.9rem;
+     color: #777;
+     margin-bottom: 20px;
+ }
+ /* Responsive */
+ 
+ @media (max-width: 720px) {
+     .projects-list {
+         flex-direction: column;
+         align-items: center;
+     }
+     section {
+         padding: 25px 20px;
+     }
+ }
